@@ -1,72 +1,354 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-div {
-    background: #333333;
+/* Color definitions */
+:root {
+    --lightblue: #D7F7FE;
+    --darkblue: #1A577F;
+    --medblue: #1F729C;
+    --salmon: #FF6067;
+    --hellayellow: #F7EE1A;
 }
 
+/* Typography */
+:root {
+    --base-font-size: 16px;
+    --base-font-family: 'Nunito', sans-serif;
+    --heading-font-family: 'Righteous', sans-serif;
+}
+
+body {
+    background-color: var(--lightblue);
+    font-family: var(--base-font-family);
+    color: #222;
+    margin: 0;
+    position: relative;
+    min-height: 100vh;
+    height: 100%;
+    padding-bottom: 2.5rem;    /* Footer height */
+}
+
+* {
+    transition: all .65s ease;
+    box-sizing: border-box;
+}
+
+/* Centering Content */
+.container {
+    max-width: 75em;
+    margin: 0 auto;
+}
+
+/* Setting up the header so the "logo" and tagline site on each side of the header using flexbox. At 700px, they will stack. */
 header {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--salmon);
+    color: white;
     padding: 10px;
 }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+header .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-nav li {
-    float: left;
+header .site-title,
+header .site-tagline {
+    font-weight: 400;
 }
 
-nav li a {
-    display: block;
-    color: #fff;
-    text-align: center;
-    padding: 14px 16px;
+@media (max-width: 700px) {
+    header .site-title,
+    header .site-tagline {
+        width: 100%;
+        text-align: center;
+    }
+
+    header .site-title {
+        margin: 0;
+    }
+}
+
+.site-title,
+h1,
+h2,
+h3 {
+    font-family: var(--heading-font-family);
+    font-size: 42px;
+    color: darken(var(--lightblue), 75%);
+}
+
+h3 {
+    font-size: 32px;
+    color: desaturate(var(--salmon), 10%);
+}
+
+.site-title {
+    color: white;
+}
+
+.site-tagline {
+    font-size: 18px;
+    font-style: italic;
+}
+
+/* Navigation, including mobile version */
+nav {
+    background-color: var(--hellayellow);
+    color: white;
+}
+
+nav a {
+    color: var(--darkblue);
     text-decoration: none;
 }
 
-nav li a:hover {
-    background-color: #111;
+nav ul,
+nav li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-aside {
-    float: left;
-    width: 20%;
-    padding: 10px;
-    background-color: #f1f1f1;
-    height: 100%;
-}
-
-main {
-    margin-left: 20%;
-    padding: 1px 16px;
-    height: 1000px;
-}
-
-#content {
-    margin-top: 20px;
-}
-
-table {
-    border-collapse: collapse;
+nav ul {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
     width: 100%;
 }
 
-th, td {
-    text-align: left;
-    padding: 8px;
+nav ul a {
+    padding: 15px 35px;
+    display: flex;
+    text-transform: uppercase;
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
+nav ul a:hover,
+nav ul a:focus {
+    background-color: lighten(var(--hellayellow), 25%);
+    color: lighten(var(--darkblue), 25%);
+}
 
-th {
-    background-color: #4CAF50;
+nav .mobile-button a {
+    position: absolute;
+    left: -99999em;
+}
+
+@media (max-width: 700px) {
+    .site-title, .site-tagline {
+        width: 100%;
+        text-align: center;
+    }
+    .site-title {
+        margin: 0;
+    }
+}
+
+.site-title,
+h1,
+h2,
+h3 {
+    font-family: var(--heading-font-family);
+    font-size: 42px; /* removed em() function */
+    color: darken(var(--lightblue), 75%);
+}
+
+h3 {
+    font-size: 32px; /* removed em() function */
+    color: desaturate(var(--salmon), 10%);
+}
+
+.site-title {
     color: white;
 }
+
+.site-tagline {
+    font-size: 18px; /* removed em() function */
+    font-style: italic;
+}
+
+/* Navigation, including mobile version */
+
+nav {
+    background: var(--hellayellow);
+    color: white;
+    /*transition: none;*/
+}
+
+nav a {
+    color: var(--darkblue);
+    text-decoration: none;
+}
+
+nav ul,
+nav li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+nav ul a {
+    padding: 15px 35px;
+    display: flex;
+    text-transform: uppercase;
+}
+
+nav ul a:hover,
+nav ul a:focus {
+    background: lighten(var(--hellayellow), 25%);
+    color: lighten(var(--darkblue), 25%);
+}
+
+nav .mobile-button a {
+    position: absolute;
+    left: -99999em;
+}
+
+@media (max-width: 700px) {
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    nav ul a {
+        position: absolute;
+        left: -99999em;
+    }
+    /*TODO fix le comportement */
+    nav ul.open li .mobile-button a {
+        background: tint(var(--hellayellow), 50%);
+        color: darken(var(--medblue), 20%);
+    }
+    nav ul.open a {
+        position: static;
+    }
+    nav .mobile-button a {
+        position: static;
+    }
+    nav ul a {
+        width: 100%;
+    }
+}
+
+/* Setting up full-bleed images, shrinking the height on smaller viewports */
+
+.full-bleed {
+    background-size: cover;
+    min-height: 300px;
+    width: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 700px) {
+    .full-bleed {
+        min-height: 175px;
+    }
+}
+
+.post {
+    padding: 30px;
+}
+
+/* Setting up our columns/grids. The first section has two columns side by side. The second section has a grid of 3 columns, that reduces down to two columns and then full width as browser is scaled down. */
+
+.columns {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.columns .item {
+    padding: 25px;
+    max-width: 47%;
+    background-color: lighten(var(--medblue), 45%);
+    color: var(--darkblue);
+    border-bottom: 5px solid var(--hellayellow);
+    margin-bottom: 35px;
+    position: relative;
+    overflow: hidden;
+}
+
+.columns .item .item-title {
+    color: darken(var(--lightblue), 85%);
+    font-size: 24px;
+    margin: 0 0 5px 0;
+    font-family: var(--heading-font-family);
+}
+
+.columns .item .item-image {
+    max-width: 100%;
+}
+
+.columns .item:hover,
+.columns .item:focus {
+    background-color: lighten(var(--medblue), 58%);
+    border-bottom-color: var(--salmon);
+}
+
+.columns .item:hover .social .fa {
+    color: tint(var(--darkblue), 40%);
+}
+
+.columns .item .social {
+    position: absolute;
+    bottom: -21px;
+    height: auto;
+    z-index: 5;
+    padding: 10px 0;
+}
+
+.columns .item .social .fa {
+    color: var(--salmon);
+    padding: 0 5px;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+}
+
+aside{
+    background: var(--medblue);
+    display: flex;
+    float: left;
+    flex-direction: column;
+    flex-shrink: 1;
+    min-height: 75vh;
+}
+
+aside h2{
+    font-size: var(--base-font-size);
+}
+
+footer {
+    background-color: var(--salmon);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 13px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+}
+
+footer a {
+    color: var(--hellayellow);
+    text-decoration: none;
+    border-bottom: 1px solid;
+}
+
+
+
+
